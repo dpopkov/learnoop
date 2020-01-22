@@ -24,4 +24,23 @@ public class PrimeGeneratorTest {
         assertEquals(25, centArray.length);
         assertEquals(97, centArray[24]);
     }
+
+    @Test
+    public void testExhaustive() {
+        for (int i = 2; i < 500; i++) {
+            verifyPrimeList(PrimeGenerator.generate(i));
+        }
+    }
+
+    private void verifyPrimeList(int[] list) {
+        for (int value : list) {
+            verifyPrime(value);
+        }
+    }
+
+    private void verifyPrime(int n) {
+        for (int factor = 2; factor < n; factor++) {
+            assertTrue(n % factor != 0);
+        }
+    }
 }
