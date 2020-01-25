@@ -1,7 +1,6 @@
 package learn.oop.asdppp.ch06episode;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -14,33 +13,11 @@ public class GameTest {
         g = new Game();
     }
 
-    @Ignore
-    @Test
-    public void testOneThrow() {
-        g.add(5);
-        assertEquals(5, g.score());
-        assertEquals(1, g.getCurrentFrame());
-    }
-
     @Test
     public void testTwoThrowsNoMark() {
         g.add(5);
         g.add(4);
         assertEquals(9, g.score());
-        assertEquals(2, g.getCurrentFrame());
-    }
-
-    @Test
-    public void testCalculatingCurrentFrame() {
-        g.add(1);
-        g.add(1);
-        assertEquals(2, g.getCurrentFrame());
-        g.add(1);
-        g.add(1);
-        assertEquals(3, g.getCurrentFrame());
-        g.add(1);
-        g.add(1);
-        assertEquals(4, g.getCurrentFrame());
     }
 
     @Test
@@ -53,7 +30,6 @@ public class GameTest {
         assertEquals(18, g.score());
         assertEquals(9, g.scoreForFrame(1));
         assertEquals(18, g.scoreForFrame(2));
-        assertEquals(3, g.getCurrentFrame());
     }
 
     @Test
@@ -62,7 +38,6 @@ public class GameTest {
         g.add(7);
         g.add(3);
         assertEquals(13, g.scoreForFrame(1));
-        assertEquals(2, g.getCurrentFrame());
     }
 
     @Test
@@ -74,18 +49,15 @@ public class GameTest {
         assertEquals(13, g.scoreForFrame(1));
         assertEquals(18, g.scoreForFrame(2));
         assertEquals(18, g.score());
-        assertEquals(3, g.getCurrentFrame());
     }
 
     @Test
     public void testSimpleStrike() {
         g.add(10);
-        assertEquals(2, g.getCurrentFrame());
         g.add(3);
         g.add(6);
         assertEquals(19, g.scoreForFrame(1));
         assertEquals(28, g.score());
-        assertEquals(3, g.getCurrentFrame());
     }
 
     @Test
@@ -94,7 +66,18 @@ public class GameTest {
             g.add(10);
         }
         assertEquals(300, g.score());
-        assertEquals(11, g.getCurrentFrame());
+    }
+
+    @Test
+    public void testEndOfArray() {
+        for (int i=0; i<9; i++) {
+            g.add(0);
+            g.add(0);
+        }
+        g.add(2);
+        g.add(8); // 10th frame spare
+        g.add(10); // Strike in last position of array.
+        assertEquals(20, g.score());
     }
 
     @Test
@@ -119,5 +102,25 @@ public class GameTest {
         g.add(8);
         g.add(6);
         assertEquals(133, g.score());
+    }
+
+    @Test
+    public void testHeartBreak() {
+        for (int i=0; i<11; i++) {
+            g.add(10);
+        }
+        g.add(9);
+        assertEquals(299, g.score());
+    }
+
+    @Test
+    public void testTenthFrameSpare() {
+        for (int i=0; i<9; i++) {
+            g.add(10);
+        }
+        g.add(9);
+        g.add(1);
+        g.add(1);
+        assertEquals(270, g.score());
     }
 }
