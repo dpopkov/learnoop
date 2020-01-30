@@ -11,6 +11,7 @@
   <modules>
     <module>c03server</module>
     <module>c03client</module>
+    <module>ch06refactor</module>
   </modules>
 
   <name>acdpsp</name>

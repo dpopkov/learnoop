@@ -3,10 +3,10 @@ package learn.oop.acdpsp.ch06refactor;
 import java.math.BigDecimal;
 
 public class TradeRecord {
-    private String sourceCurrencyCode;
-    private String destinationCurrencyCode;
-    private int lots;
-    private BigDecimal price;
+    private final String sourceCurrencyCode;
+    private final String destinationCurrencyCode;
+    private final int lots;
+    private final BigDecimal price;
 
     public TradeRecord(String sourceCurrencyCode, String destinationCurrencyCode, int lots, BigDecimal price) {
         this.sourceCurrencyCode = sourceCurrencyCode;

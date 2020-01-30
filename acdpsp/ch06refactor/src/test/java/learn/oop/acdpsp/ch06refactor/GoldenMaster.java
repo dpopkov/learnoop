@@ -1,7 +1,6 @@
 package learn.oop.acdpsp.ch06refactor;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.*;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
