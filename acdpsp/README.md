@@ -44,3 +44,9 @@ to a failing state, you know that the last change you made is responsible for br
 #### Making Legacy Code Adaptive
 
 __Legacy code is code without tests.__ (Michael Feathers, Working Effectively with Legacy Code)
+
+Для создания safety net перед началом рефаткоринга сначала создаются _characterization tests_, то есть сохраненный
+вывод соответствующий различным вариантам ввода. Когда _characterization tests_ готовы, то создается _Golden Master_
+тест, который проверяет соответствие реального вывода SUT (System Under Test), тому выводу который сохранен в
+_characterization tests_. Только после того как _Golden Master_ готов можно иметь минимальный уровень уверенности 
+и можно приступать к рефакторингу кода не покрытого юнит тестами.
