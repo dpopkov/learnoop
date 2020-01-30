@@ -26,3 +26,21 @@ The Strategy pattern allows you to change the desired behavior of a class based 
 It is used whenever a class needs th exhibit variant behavior depending on the state of an object, that can change 
 at run time. The behavior of the class is hidden behind an interface whose implementations are used to perform
 the real work.
+
+
+### Chapter 5 - Testing
+
+__Unit Testing__ - is the discipline of writing code hat tests other code. Unit tests are source code, thus they 
+can be compiled and executed. As each unit test runs, it reports the test's success or failure. If all of the unit 
+tests pass, the production code that they test is considered to be working, meeting its requirements.
+
+When you unit test as early as possible in the process - that is, before you write any production code - you create
+a safety net to catch any subsequent errors when you change code. If a unit test transitions from a passing state 
+to a failing state, you know that the last change you made is responsible for breaking the code.
+
+
+### Chapter 6 - Refactoring
+
+#### Making Legacy Code Adaptive
+
+__Legacy code is code without tests.__ (Michael Feathers, Working Effectively with Legacy Code)
