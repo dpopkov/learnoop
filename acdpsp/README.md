@@ -3,6 +3,7 @@
 * [Null Object pattern](#nullobject)
 * [Adapter pattern](#adapter)
 * [Strategy pattern](#strategy)
+* [Decorator pattern](#decorator)
 
 
 ### Chapter 4 - Interfaces and design patterns
@@ -54,9 +55,36 @@ _characterization tests_. Только после того как _Golden Master
 
 ### Chapter 7 - The Single Responsibility Principle
 
-Принцип SRP рекомендует псать код, который имеет одну и только одну причину для изменений. Если у класса более одной
+Принцип SRP рекомендует писать код, который имеет одну и только одну причину для изменений. Если у класса более одной
 причины меняться, это значит у него более одной ответственности. Классы с более чем одной ответственностью должны 
 быть разбиты на меньшие классы, каждый из которых должен иметь только одну ответственность и причину для изменения.
    
 Через процесс делегирования и абстракции класс имеющий слишком много причин для изменений должен делегировать одну 
 или несколько ответственностей другим классам.
+
+### Decorator pattern
+<a name="decorator"></a>
+
+Паттерн Декоратор отлично подходит для обеспечения того чтобы каждый класс имел только единственную ответсвенность.
+Классы часто могут делать много вещей без очевидного способа распределения ответственности на другие классы.
+
+Основная идея Декоратора в том, что каждый класс-декоратор выполняет контракт типа, и также принимает один или несколько
+типов как параметры конструктора. Это выгодно так как функциональность может быть добавлена к существующему классу,
+который имплементирует определенный интерфейс, и декоратор также действует без ведома клиентов как реализация
+требуемого интерфейса.
+
+Разновидности Декоратора:
+
+[Simple Decorator](ch07srp/src/main/java/learn/oop/acdpsp/ch07decorators/simple)
+
+[Composite Pattern](ch07srp/src/main/java/learn/oop/acdpsp/ch07decorators/composite)
+
+[Predicated Decorator Pattern](ch07srp/src/main/java/learn/oop/acdpsp/ch07decorators/predicated)
+
+[Branching Decorator Pattern](ch07srp/src/main/java/learn/oop/acdpsp/ch07decorators/branching)
+
+[Lazy Decorator Pattern](ch07srp/src/main/java/learn/oop/acdpsp/ch07decorators/lazy)
+
+[Logging Decorator Pattern](ch07srp/src/main/java/learn/oop/acdpsp/ch07decorators/logging)
+
+[Profiling Decorator Pattern](ch07srp/src/main/java/learn/oop/acdpsp/ch07decorators/profiling)
