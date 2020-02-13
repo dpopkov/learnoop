@@ -2,21 +2,21 @@ package oop.acdpsp.ch10isp;
 
 import org.apache.logging.log4j.Logger;
 
-public class CrudLogging <E> implements CreateReadUpdateDelete<E> {
-    private CreateReadUpdateDelete<E> decoratedCrud;
+public class CrudLogging <E> implements SaveReadDelete<E> {
+    private SaveReadDelete<E> decoratedCrud;
     private Class<E> eClass;
     private Logger log;
 
-    public CrudLogging(CreateReadUpdateDelete<E> decoratedCrud, Class<E> eClass, Logger log) {
+    public CrudLogging(SaveReadDelete<E> decoratedCrud, Class<E> eClass, Logger log) {
         this.decoratedCrud = decoratedCrud;
         this.eClass = eClass;
         this.log = log;
     }
 
     @Override
-    public void create(E entity) {
-        log.info("Creating entity of type {}", entity.getClass().getName());
-        decoratedCrud.create(entity);
+    public void save(E entity) {
+        log.info("Saving entity of type {}", entity.getClass().getName());
+        decoratedCrud.save(entity);
     }
 
     @Override
@@ -29,12 +29,6 @@ public class CrudLogging <E> implements CreateReadUpdateDelete<E> {
     public Iterable<E> readAll() {
         log.info("Reading all entities of type {}", eClass.getName());
         return decoratedCrud.readAll();
-    }
-
-    @Override
-    public void update(E entity) {
-        log.info("Updating entity of type {}", entity.getClass().getName());
-        decoratedCrud.update(entity);
     }
 
     @Override

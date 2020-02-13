@@ -1,12 +1,12 @@
 package oop.acdpsp.ch10isp;
 
-public class CrudTransactional <E> implements CreateReadUpdateDelete<E> {
-    private CreateReadUpdateDelete<E> decoratedCrud;
+public class CrudTransactional <E> implements SaveReadDelete<E> {
+    private SaveReadDelete<E> decoratedCrud;
 
     @Override
-    public void create(E entity) {
+    public void save(E entity) {
         try (var transaction = new TransactionScope()) {
-            decoratedCrud.create(entity);
+            decoratedCrud.save(entity);
             transaction.commit();
         }
     }
@@ -29,14 +29,6 @@ public class CrudTransactional <E> implements CreateReadUpdateDelete<E> {
             transaction.commit();
         }
         return result;
-    }
-
-    @Override
-    public void update(E entity) {
-        try (var transaction = new TransactionScope()) {
-            decoratedCrud.update(entity);
-            transaction.commit();
-        }
     }
 
     @Override
