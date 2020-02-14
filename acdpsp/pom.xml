@@ -13,7 +13,8 @@
     <module>c03client</module>
     <module>ch06refactor</module>
     <module>ch07srp</module>
-      <module>ch10isp</module>
+    <module>ch10isp</module>
+    <module>payroll</module>
   </modules>
 
   <name>acdpsp</name>
