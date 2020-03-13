@@ -55,7 +55,8 @@ public class BankClient {
     /** Allocates a new account number, makes it current, and assigns it to the map with an initial balance of 0. */
     private void newAccount() {
         boolean foreign = requestForeign();
-        current = bank.newAccount(foreign);
+        int type = requestType();
+        current = bank.newAccount(type, foreign);
         System.out.println("Your new account number is " + current);
     }
 
@@ -64,6 +65,11 @@ public class BankClient {
         System.out.print("Enter status (1-foreign, 2-domestic): ");
         int answer = scanner.nextInt();
         return answer == 1;
+    }
+
+    private int requestType() {
+        System.out.print("Enter type (1-savings, 2-checking): ");
+        return scanner.nextInt();
     }
 
     /** Requests and sets foreign/domestic status for the current bank account. */

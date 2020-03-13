@@ -16,9 +16,14 @@ public class Bank {
     }
 
     /** Allocates a new account number, and assigns it to the map with an initial balance of 0. */
-    public int newAccount(boolean isForeign) {
+    public int newAccount(int type, boolean isForeign) {
         int acctNum = nextAcct++;
-        BankAccount bankAccount = new BankAccount(acctNum);
+        BankAccount bankAccount;
+        if (type == 1) {
+            bankAccount = new SavingsAccount(acctNum);
+        } else {
+            bankAccount = new CheckingAccount(acctNum);
+        }
         bankAccount.setForeign(isForeign);
         accounts.put(bankAccount.getAcctNum(), bankAccount);
         return acctNum;
@@ -26,7 +31,7 @@ public class Bank {
 
     /** Allocates a new account number, and assigns it to the map with an initial balance of 0. */
     public int newAccount() {
-        return newAccount(false);
+        return newAccount(1, false);
     }
 
     public int getBalance(int acctNum) {
@@ -53,10 +58,12 @@ public class Bank {
         bankAccount.setForeign(isForeign);
     }
 
-    /** Increases the balance of each account by a fixed interest rate. */
+    /** Increases the balance of savings accounts by a fixed interest rate. */
     public void addInterest() {
         for (BankAccount bankAccount : accounts.values()) {
-            bankAccount.addInterest();
+            if (bankAccount instanceof SavingsAccount) {
+                ((SavingsAccount) bankAccount).addInterest();
+            }
         }
     }
 
