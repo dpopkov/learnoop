@@ -6,19 +6,22 @@ import java.util.Scanner;
  * It is responsible for I/O processing.
  */
 public class BankClient {
-    private final Bank bank = new Bank();
+    private final Bank bank;
+    private final Scanner scanner;
     private int current = -1;
-    private Scanner scanner;
     private boolean done = false;
 
+    public BankClient(Scanner scanner, Bank bank) {
+        this.scanner = scanner;
+        this.bank = bank;
+    }
+
     public void run() {
-        scanner = new Scanner(System.in);
         while (!done) {
             System.out.print("Enter command (0=quit, 1=new, 2=select, 3=deposit, 4=loan, 5=show, 6=interest, 7=setForeign): ");
             int cmd = scanner.nextInt();
             processCommand(cmd);
         }
-        scanner.close();
     }
 
     private void processCommand(int cmd) {

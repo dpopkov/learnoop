@@ -1,24 +1,26 @@
 package learn.oop.jpdppp.bank;
 
-import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Bank is responsible for the banking information.
+ * Bank is responsible for managing of several bank accounts.
  */
 public class Bank {
-    private static final double RATE = 0.01;
+    /** Map of accounts where key denotes the account number and value is a bank account. */
+    private final Map<Integer, BankAccount> accounts;
+    private int nextAcct;
 
-    /** Map of accounts where key denotes the account number and value is the balance in cents. */
-    private final Map<Integer, BankAccount> accounts = new HashMap<>();
-    private int nextAcct = 0;
+    public Bank(Map<Integer, BankAccount> accounts, int nextAcct) {
+        this.accounts = accounts;
+        this.nextAcct = nextAcct;
+    }
 
     /** Allocates a new account number, and assigns it to the map with an initial balance of 0. */
     public int newAccount(boolean isForeign) {
         int acctNum = nextAcct++;
         BankAccount bankAccount = new BankAccount(acctNum);
         bankAccount.setForeign(isForeign);
-        accounts.put(acctNum, bankAccount);
+        accounts.put(bankAccount.getAcctNum(), bankAccount);
         return acctNum;
     }
 
@@ -35,16 +37,14 @@ public class Bank {
     /** Increases the balance of the specified account by a specified number of cents. */
     public void deposit(int acctNu, int amount) {
         BankAccount bankAccount = accounts.get(acctNu);
-        int balance = bankAccount.getBalance();
-        bankAccount.setBalance(balance + amount);
+        bankAccount.deposit(amount);
     }
 
     /** Determines whether the specified account has enough money to be used as collateral for a loan.
      * The criterion is that the account must contain at least half of the loan amount. */
     public boolean authorizeLoan(int acctNum, int loan) {
         BankAccount bankAccount = accounts.get(acctNum);
-        int balance = bankAccount.getBalance();
-        return balance >= loan / 2.0;
+        return bankAccount.hasEnoughCollateral(loan);
     }
 
     /** Sets <code>foreign</code> property of the specified account. */
@@ -56,9 +56,7 @@ public class Bank {
     /** Increases the balance of each account by a fixed interest rate. */
     public void addInterest() {
         for (BankAccount bankAccount : accounts.values()) {
-            int balance = bankAccount.getBalance();
-            int newBalance = balance + (int) (balance * RATE);
-            bankAccount.setBalance(newBalance);
+            bankAccount.addInterest();
         }
     }
 

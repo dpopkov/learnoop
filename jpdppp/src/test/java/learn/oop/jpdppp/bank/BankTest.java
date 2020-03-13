@@ -1,11 +1,21 @@
 package learn.oop.jpdppp.bank;
 
+import org.junit.Before;
 import org.junit.Test;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import static org.junit.Assert.*;
 
 public class BankTest {
-    private final Bank bank = new Bank();
+    private Bank bank;
+
+    @Before
+    public void setup() {
+        Map<Integer, BankAccount> accounts = new HashMap<>();
+        bank = new Bank(accounts, 0);
+    }
 
     @Test
     public void whenNewAccountThenCreatesNew() {

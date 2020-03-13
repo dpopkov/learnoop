@@ -1,6 +1,8 @@
 package learn.oop.jpdppp.bank;
 
 public class BankAccount {
+    private static final double RATE = 0.01;
+
     private final int acctNum;
     private int balance = 0;
     private boolean isForeign = false;
@@ -17,10 +19,6 @@ public class BankAccount {
         return balance;
     }
 
-    public void setBalance(int balance) {
-        this.balance = balance;
-    }
-
     public boolean isForeign() {
         return isForeign;
     }
@@ -29,8 +27,20 @@ public class BankAccount {
         isForeign = foreign;
     }
 
+    public void deposit(int amt) {
+        balance = balance + amt;
+    }
+
+    public boolean hasEnoughCollateral(int loan) {
+        return balance >= loan / 2.0;
+    }
+
+    public void addInterest() {
+        balance = balance + (int) (balance * RATE);
+    }
+
     @Override
     public String toString() {
-        return "BankAccount " + acctNum + ": balance=" + balance + ", is " + (isForeign ? "foreign" : "domestic");
+        return "BankAccount " + acctNum + ": balance=" + balance + ", is " + (isForeign() ? "foreign" : "domestic");
     }
 }
