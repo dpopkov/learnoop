@@ -8,9 +8,10 @@ import java.util.Set;
  * Bank is responsible for the banking information.
  */
 public class Bank {
+    private static final double RATE = 0.01;
+
     /** Map of accounts where key denotes the account number and value is the balance in cents. */
     private final Map<Integer, Integer> accounts = new HashMap<>();
-    private final double rate = 0.01;
     private int nextAcct = 0;
 
     /** Allocates a new account number, and assigns it to the map with an initial balance of 0. */
@@ -34,7 +35,7 @@ public class Bank {
      * The criterion is that the account must contain at least half of the loan amount. */
     public boolean authorizeLoan(int acctNum, int loan) {
         int balance = accounts.get(acctNum);
-        return balance >= loan / 2;
+        return balance >= loan / 2.0;
     }
 
     /** Increases the balance of each account by a fixed interest rate. */
@@ -42,7 +43,7 @@ public class Bank {
         Set<Integer> acctNumbers = accounts.keySet();
         for (int i : acctNumbers) {
             int balance = accounts.get(i);
-            int newBalance = (int) (balance * (1 + rate));
+            int newBalance = (int) (balance * (1 + RATE));
             accounts.put(i, newBalance);
         }
     }
