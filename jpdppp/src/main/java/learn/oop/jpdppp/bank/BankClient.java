@@ -14,7 +14,7 @@ public class BankClient {
     public void run() {
         scanner = new Scanner(System.in);
         while (!done) {
-            System.out.print("Enter command (0=quit, 1=new, 2=select, 3=deposit, 4=loan, 5=show, 6=interest): ");
+            System.out.print("Enter command (0=quit, 1=new, 2=select, 3=deposit, 4=loan, 5=show, 6=interest, 7=setForeign): ");
             int cmd = scanner.nextInt();
             processCommand(cmd);
         }
@@ -36,6 +36,8 @@ public class BankClient {
             showAll();
         } else if (cmd == 6) {
             addInterest();
+        } else if (cmd == 7) {
+            setForeign();
         } else {
             System.out.println("Illegal command.");
         }
@@ -49,8 +51,21 @@ public class BankClient {
 
     /** Allocates a new account number, makes it current, and assigns it to the map with an initial balance of 0. */
     private void newAccount() {
-        current = bank.newAccount();
+        boolean foreign = requestForeign();
+        current = bank.newAccount(foreign);
         System.out.println("Your new account number is " + current);
+    }
+
+    /** Requests for foreign/domestic status for bank account. */
+    private boolean requestForeign() {
+        System.out.print("Enter status (1-foreign, 2-domestic): ");
+        int answer = scanner.nextInt();
+        return answer == 1;
+    }
+
+    /** Requests and sets foreign/domestic status for the current bank account. */
+    private void setForeign() {
+        bank.setForeign(current, requestForeign() );
     }
 
     /** Makes an existing account current and prints the account balance. */
