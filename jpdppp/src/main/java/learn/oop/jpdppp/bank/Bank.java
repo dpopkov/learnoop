@@ -61,9 +61,7 @@ public class Bank {
     /** Increases the balance of savings accounts by a fixed interest rate. */
     public void addInterest() {
         for (BankAccount bankAccount : accounts.values()) {
-            if (bankAccount instanceof SavingsAccount) {
-                ((SavingsAccount) bankAccount).addInterest();
-            }
+            bankAccount.addInterest();
         }
     }
 

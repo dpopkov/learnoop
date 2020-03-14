@@ -41,6 +41,7 @@ public class SavingsAccount implements BankAccount {
         return balance >= loan / 2.0;
     }
 
+    @Override
     public void addInterest() {
         balance += (int) (balance * RATE);
     }
@@ -48,5 +49,11 @@ public class SavingsAccount implements BankAccount {
     @Override
     public String toString() {
         return "SavingsAccount " + acctNum + ": balance=" + balance + ", is " + (isForeign() ? "foreign" : "domestic");
+    }
+
+    @Override
+    public int compareTo(BankAccount other) {
+        int cmp = getBalance() - other.getBalance();
+        return (cmp != 0) ? cmp : (getAcctNum() - other.getAcctNum());
     }
 }

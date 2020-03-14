@@ -40,7 +40,18 @@ public class CheckingAccount implements BankAccount {
     }
 
     @Override
+    public void addInterest() {
+        // do nothing
+    }
+
+    @Override
     public String toString() {
         return "CheckingAccount " + acctNum + ": balance=" + balance + ", is " + (isForeign() ? "foreign" : "domestic");
+    }
+
+    @Override
+    public int compareTo(BankAccount other) {
+        int cmp = getBalance() - other.getBalance();
+        return (cmp != 0) ? cmp : (getAcctNum() - other.getAcctNum());
     }
 }

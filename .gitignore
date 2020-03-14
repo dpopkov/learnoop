@@ -30,4 +30,8 @@ hs_err_pid*
 
 # Tmp files
 /**/Tmp*
+/**/*.swp
+
+# Txt folder
+/**/txt/
 
