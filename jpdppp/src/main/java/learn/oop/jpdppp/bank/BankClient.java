@@ -62,7 +62,7 @@ public class BankClient {
 
     /** Requests for foreign/domestic status for bank account. */
     private boolean requestForeign() {
-        System.out.print("Enter status (1-foreign, 2-domestic): ");
+        System.out.print("Enter status (1-foreign, 2-domestic, 3-interest checking): ");
         int answer = scanner.nextInt();
         return answer == 1;
     }

@@ -50,3 +50,11 @@ wherever an object of type Y is expected.
 ### The Rule of Abstraction
 
 A class's dependencies should be as abstract as possible.
+
+
+3 - Class Hierarchies
+---------------------
+
+### The "Don't Repeat Yourself" Rule
+
+A piece of code should exist in exactly one place.
