@@ -1,8 +1,8 @@
 package learn.oop.jpdppp.bank;
 
-public class CheckingAccount extends AbstractBankAccount {
+public abstract class CheckingAccount extends AbstractBankAccount {
 
-    public CheckingAccount(int acctNum) {
+    protected CheckingAccount(int acctNum) {
         super(acctNum);
     }
 
@@ -12,12 +12,8 @@ public class CheckingAccount extends AbstractBankAccount {
     }
 
     @Override
-    public void addInterest() {
-        // do nothing
-    }
+    public abstract void addInterest();
 
     @Override
-    public String toString() {
-        return "CheckingAccount " + acctNum + ": balance=" + balance + ", is " + (isForeign() ? "foreign" : "domestic");
-    }
+    public abstract String toString();
 }

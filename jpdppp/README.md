@@ -15,4 +15,5 @@ Versions of Banking demo
 5. Polymorphism, Interfaces: turn BankAccount into an interface, add 2 account types
 6. Make interface BankAccount transparent adding method addInterest, implement Comparable
 7. Abstract class: add AbstractBankAccount  
-  
+8. Turn concrete super class CheckingAccount into abstract, add RegularChecking,
+   add SavedBankInfo

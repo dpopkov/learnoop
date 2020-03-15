@@ -22,7 +22,7 @@ public class Bank {
         if (type == 1) {
             bankAccount = new SavingsAccount(acctNum);
         } else if (type == 2) {
-            bankAccount = new CheckingAccount(acctNum);
+            bankAccount = new RegularChecking(acctNum);
         } else {
             bankAccount = new InterestChecking(acctNum);
         }
@@ -77,5 +77,9 @@ public class Bank {
             result.append(ba.toString());
         }
         return result.toString();
+    }
+
+    public int nextAcctNum() {
+        return nextAcct;
     }
 }

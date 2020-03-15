@@ -34,4 +34,6 @@ hs_err_pid*
 
 # Txt folder
 /**/txt/
+# Data folder
+/**/data/
 
