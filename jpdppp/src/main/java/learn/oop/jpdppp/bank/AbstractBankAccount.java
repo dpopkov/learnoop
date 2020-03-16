@@ -3,7 +3,7 @@ package learn.oop.jpdppp.bank;
 public abstract class AbstractBankAccount implements BankAccount {
     protected final int acctNum;
     protected int balance = 0;
-    protected boolean isForeign = false;
+    private OwnerStrategy owner = new Domestic();
 
     protected AbstractBankAccount(int acctNum) {
         this.acctNum = acctNum;
@@ -21,12 +21,21 @@ public abstract class AbstractBankAccount implements BankAccount {
 
     @Override
     public boolean isForeign() {
-        return isForeign;
+        return owner.isForeign();
+    }
+
+    public void setOwner(OwnerStrategy owner) {
+        this.owner = owner;
     }
 
     @Override
     public void setForeign(boolean foreign) {
-        isForeign = foreign;
+        owner = foreign ? new Foreign() : new Domestic();
+    }
+
+    @Override
+    public int fee() {
+        return owner.fee();
     }
 
     @Override
@@ -62,7 +71,8 @@ public abstract class AbstractBankAccount implements BankAccount {
     @Override
     public String toString() {
         return accountType() + " account " + acctNum + ": balance=" + balance
-                + ", is " + (isForeign() ? "foreign" : "domestic");
+                + ", is " + owner.toString()
+                + ", fee=" + fee();
     }
 
     protected abstract double collateralRatio();

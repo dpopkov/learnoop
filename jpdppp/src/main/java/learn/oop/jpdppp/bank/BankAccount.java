@@ -8,4 +8,5 @@ public interface BankAccount extends Comparable<BankAccount> {
     void deposit(int amt);
     boolean hasEnoughCollateral(int loan);
     void addInterest();
+    int fee();
 }

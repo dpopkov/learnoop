@@ -63,3 +63,4 @@ A piece of code should exist in exactly one place.
 4 - Strategies
 --------------
 
+This chapter uses the Strategy Pattern and the Command Pattern.

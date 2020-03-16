@@ -18,3 +18,5 @@ Versions of Banking demo
 8. Turn concrete super class CheckingAccount into abstract, add RegularChecking,
    add SavedBankInfo
 9. Use the Template Pattern in AbstractBankAccount 
+10. Use the Strategy Pattern - use OwnerStrategy in AbstractBankAccount, 
+                               use InputCommand in BankClient
