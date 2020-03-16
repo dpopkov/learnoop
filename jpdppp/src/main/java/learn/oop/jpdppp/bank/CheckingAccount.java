@@ -7,13 +7,13 @@ public abstract class CheckingAccount extends AbstractBankAccount {
     }
 
     @Override
-    public boolean hasEnoughCollateral(int loan) {
-        return balance >= 2.0 * loan / 3.0;
+    protected double collateralRatio() {
+        return 2.0 / 3.0;
     }
 
     @Override
-    public abstract void addInterest();
+    protected abstract double interestRate();
 
     @Override
-    public abstract String toString();
+    protected abstract String accountType();
 }

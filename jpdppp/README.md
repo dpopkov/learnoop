@@ -17,3 +17,4 @@ Versions of Banking demo
 7. Abstract class: add AbstractBankAccount  
 8. Turn concrete super class CheckingAccount into abstract, add RegularChecking,
    add SavedBankInfo
+9. Use the Template Pattern in AbstractBankAccount 

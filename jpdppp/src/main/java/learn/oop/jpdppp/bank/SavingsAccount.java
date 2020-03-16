@@ -8,13 +8,13 @@ public class SavingsAccount extends AbstractBankAccount {
     }
 
     @Override
-    public boolean hasEnoughCollateral(int loan) {
-        return balance >= loan / 2.0;
+    protected double collateralRatio() {
+        return 0.5;
     }
 
     @Override
-    public void addInterest() {
-        balance += (int) (balance * RATE);
+    public double interestRate() {
+        return RATE;
     }
 
     @Override
@@ -27,7 +27,7 @@ public class SavingsAccount extends AbstractBankAccount {
     }
 
     @Override
-    public String toString() {
-        return "SavingsAccount " + acctNum + ": balance=" + balance + ", is " + (isForeign() ? "foreign" : "domestic");
+    protected String accountType() {
+        return "Savings";
     }
 }

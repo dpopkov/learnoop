@@ -6,12 +6,12 @@ public class RegularChecking extends CheckingAccount {
     }
 
     @Override
-    public void addInterest() {
-        // do nothing
+    public double interestRate() {
+        return 0.0;
     }
 
     @Override
-    public String toString() {
-        return "Regular checking account " + acctNum + ": balance=" + balance + ", is " + (isForeign() ? "foreign" : "domestic");
+    protected String accountType() {
+        return "Regular Checking";
     }
 }
