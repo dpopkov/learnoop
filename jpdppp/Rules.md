@@ -58,3 +58,8 @@ A class's dependencies should be as abstract as possible.
 ### The "Don't Repeat Yourself" Rule
 
 A piece of code should exist in exactly one place.
+
+
+4 - Strategies
+--------------
+
