@@ -3,7 +3,7 @@ package learn.oop.jpdppp.bank;
 public abstract class AbstractBankAccount implements BankAccount {
     protected final int acctNum;
     protected int balance = 0;
-    private OwnerStrategy owner = new Domestic();
+    private OwnerStrategy owner = Owners.DOMESTIC;
 
     protected AbstractBankAccount(int acctNum) {
         this.acctNum = acctNum;
@@ -30,7 +30,7 @@ public abstract class AbstractBankAccount implements BankAccount {
 
     @Override
     public void setForeign(boolean foreign) {
-        owner = foreign ? new Foreign() : new Domestic();
+        owner = foreign ? Owners.FOREIGN : Owners.DOMESTIC;
     }
 
     @Override

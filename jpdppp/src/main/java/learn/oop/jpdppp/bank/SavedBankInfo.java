@@ -63,13 +63,7 @@ public class SavedBankInfo {
             int type = byteBuffer.getInt(4);
             int balance = byteBuffer.getInt(8);
             int isForeign = byteBuffer.getInt(12);
-            if (type == 1) {
-                account = new SavingsAccount(num);
-            } else if (type == 2) {
-                account = new RegularChecking(num);
-            } else {
-                account = new InterestChecking(num);
-            }
+            account = AccountFactory.createAccount(type, num);
             account.deposit(balance);
             account.setForeign(isForeign == 1);
         }

@@ -1,7 +1,5 @@
 package learn.oop.jpdppp.bank;
 
-import learn.oop.jpdppp.bank.inputcommands.*;
-
 import java.util.Scanner;
 
 /**
@@ -12,17 +10,7 @@ public class BankClient {
     private final Scanner scanner;
     private int current = 0;
     private boolean done = false;
-    private final InputCommand[] commands = {
-            new QuitCmd(),
-            new NewCmd(),
-            new SelectCmd(),
-            new DepositCmd(),
-            new LoanCmd(),
-            new ShowCmd(),
-            new InterestCmd(),
-            new SetForeignCmd()
-    };
-    private final InputCommand illegal = new IllegalCmd();
+    private final InputCommand[] commands = InputCommands.values();
 
     public BankClient(Scanner scanner, Bank bank) {
         this.scanner = scanner;
@@ -39,7 +27,7 @@ public class BankClient {
 
     private String constructPromptMessage() {
         StringBuilder result = new StringBuilder("Enter command (");
-        int last = commands.length - 2;
+        int last = commands.length - 1;
         for (int i = 0; i < last; i++) {
             result.append(i).append("=").append(commands[i]).append(", ");
         }
@@ -48,13 +36,11 @@ public class BankClient {
     }
 
     private void processCommand(int cmdNum) {
-        InputCommand command;
-        if (0 <= cmdNum && cmdNum < commands.length) {
-            command = commands[cmdNum];
-        } else {
-            command = illegal;
+        if (cmdNum < 0 || commands.length <= cmdNum) {
+            System.out.println("Illegal command.");
+            return;
         }
-        current = command.execute(scanner, bank, current);
+        current = commands[cmdNum].execute(scanner, bank, current);
         if (current < 0) {
             done = true;
         }

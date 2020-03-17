@@ -64,3 +64,9 @@ A piece of code should exist in exactly one place.
 --------------
 
 This chapter uses the Strategy Pattern and the Command Pattern.
+
+
+5 - Encapsulating Object Creation
+---------------------------------
+
+This chapter uses _object caching_ and _factories_.
