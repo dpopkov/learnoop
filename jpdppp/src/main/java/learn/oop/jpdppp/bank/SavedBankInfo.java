@@ -7,9 +7,9 @@ import java.util.Map;
 
 public class SavedBankInfo {
     private final String path;
-    private Map<Integer, BankAccount> accounts = new HashMap<>();
+    private final Map<Integer, BankAccount> accounts = new HashMap<>();
     private int nextAccount = 0;
-    private ByteBuffer byteBuffer = ByteBuffer.allocate(16);
+    private final ByteBuffer byteBuffer = ByteBuffer.allocate(16);
 
     public SavedBankInfo(String path) {
         this.path = path;
@@ -63,13 +63,15 @@ public class SavedBankInfo {
             int type = byteBuffer.getInt(4);
             int balance = byteBuffer.getInt(8);
             int isForeign = byteBuffer.getInt(12);
+            TypeStrategy typeStrategy;
             if (type == 1) {
-                account = new SavingsAccount(num);
+                typeStrategy = new SavingsAccount();
             } else if (type == 2) {
-                account = new RegularChecking(num);
+                typeStrategy = new RegularChecking();
             } else {
-                account = new InterestChecking(num);
+                typeStrategy = new InterestChecking();
             }
+            account = new AbstractBankAccount(num, typeStrategy);
             account.deposit(balance);
             account.setForeign(isForeign == 1);
         }
@@ -77,8 +79,9 @@ public class SavedBankInfo {
     }
 
     private void writeAccount(OutputStream out, BankAccount account) throws IOException {
-        int type = (account instanceof SavingsAccount) ? 1
-                : ((account instanceof RegularChecking) ? 2 : 3);
+        TypeStrategy typeStrategy = ((AbstractBankAccount) account).getTypeStrategy();
+        int type = (typeStrategy instanceof SavingsAccount) ? 1
+                : ((typeStrategy instanceof RegularChecking) ? 2 : 3);
         byteBuffer.putInt(0, account.getAcctNum());
         byteBuffer.putInt(4, type);
         byteBuffer.putInt(8, account.getBalance());

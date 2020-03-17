@@ -1,12 +1,14 @@
 package learn.oop.jpdppp.bank;
 
-public abstract class AbstractBankAccount implements BankAccount {
+public class AbstractBankAccount implements BankAccount {
     protected final int acctNum;
     protected int balance = 0;
     private OwnerStrategy owner = new Domestic();
+    private final TypeStrategy typeStrategy;
 
-    protected AbstractBankAccount(int acctNum) {
+    public AbstractBankAccount(int acctNum, TypeStrategy typeStrategy) {
         this.acctNum = acctNum;
+        this.typeStrategy = typeStrategy;
     }
 
     @Override
@@ -26,6 +28,10 @@ public abstract class AbstractBankAccount implements BankAccount {
 
     public void setOwner(OwnerStrategy owner) {
         this.owner = owner;
+    }
+
+    public TypeStrategy getTypeStrategy() {
+        return typeStrategy;
     }
 
     @Override
@@ -60,24 +66,18 @@ public abstract class AbstractBankAccount implements BankAccount {
 
     @Override
     public boolean hasEnoughCollateral(int loan) {
-        return balance >= loan * collateralRatio();
+        return balance >= loan * typeStrategy.collateralRatio();
     }
 
     @Override
     public void addInterest() {
-        balance += (int) (balance * interestRate());
+        balance += (int) (balance * typeStrategy.interestRate());
     }
 
     @Override
     public String toString() {
-        return accountType() + " account " + acctNum + ": balance=" + balance
+        return typeStrategy.accountType() + " account " + acctNum + ": balance=" + balance
                 + ", is " + owner.toString()
                 + ", fee=" + fee();
     }
-
-    protected abstract double collateralRatio();
-
-    protected abstract double interestRate();
-
-    protected abstract String accountType();
 }

@@ -18,14 +18,15 @@ public class Bank {
     /** Allocates a new account number, and assigns it to the map with an initial balance of 0. */
     public int newAccount(int type, boolean isForeign) {
         int acctNum = nextAcct++;
-        BankAccount bankAccount;
+        TypeStrategy typeStrategy;
         if (type == 1) {
-            bankAccount = new SavingsAccount(acctNum);
+            typeStrategy = new SavingsAccount();
         } else if (type == 2) {
-            bankAccount = new RegularChecking(acctNum);
+            typeStrategy = new RegularChecking();
         } else {
-            bankAccount = new InterestChecking(acctNum);
+            typeStrategy = new InterestChecking();
         }
+        BankAccount bankAccount = new AbstractBankAccount(acctNum, typeStrategy);
         bankAccount.setForeign(isForeign);
         accounts.put(bankAccount.getAcctNum(), bankAccount);
         return acctNum;

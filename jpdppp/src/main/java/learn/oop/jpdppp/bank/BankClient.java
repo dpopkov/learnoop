@@ -39,7 +39,7 @@ public class BankClient {
 
     private String constructPromptMessage() {
         StringBuilder result = new StringBuilder("Enter command (");
-        int last = commands.length - 2;
+        int last = commands.length - 1;
         for (int i = 0; i < last; i++) {
             result.append(i).append("=").append(commands[i]).append(", ");
         }

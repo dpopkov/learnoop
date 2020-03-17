@@ -1,14 +1,10 @@
 package learn.oop.jpdppp.bank;
 
-public class SavingsAccount extends AbstractBankAccount {
+public class SavingsAccount implements TypeStrategy {
     private static final double RATE = 0.01;
 
-    public SavingsAccount(int acctNum) {
-        super(acctNum);
-    }
-
     @Override
-    protected double collateralRatio() {
+    public double collateralRatio() {
         return 0.5;
     }
 
@@ -18,16 +14,7 @@ public class SavingsAccount extends AbstractBankAccount {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (!(obj instanceof SavingsAccount)) {
-            return false;
-        }
-        SavingsAccount sa = (SavingsAccount) obj;
-        return getAcctNum() == sa.getAcctNum();
-    }
-
-    @Override
-    protected String accountType() {
+    public String accountType() {
         return "Savings";
     }
 }

@@ -50,13 +50,13 @@ public class ComparatorBankAccounts {
 
     private static List<BankAccount> initAccounts() {
         List<BankAccount> list = new ArrayList<>();
-        list.add(new SavingsAccount(101));
+        list.add(new AbstractBankAccount(101, new SavingsAccount()));
         list.get(0).deposit(100);
-        list.add(new RegularChecking(102));
+        list.add(new AbstractBankAccount(102, new RegularChecking()));
         list.get(1).deposit(200);
-        list.add(new InterestChecking(103));
+        list.add(new AbstractBankAccount(103, new InterestChecking()));
         list.get(2).deposit(300);
-        list.add(new SavingsAccount(104));
+        list.add(new AbstractBankAccount(104, new SavingsAccount()));
         list.get(3).deposit(400);
         return list;
     }

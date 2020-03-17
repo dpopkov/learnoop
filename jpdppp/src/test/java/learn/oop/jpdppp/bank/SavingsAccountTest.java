@@ -13,11 +13,11 @@ public class SavingsAccountTest {
     @Test
     public void testComparing() {
         List<BankAccount> accounts = new ArrayList<>();
-        accounts.add(new SavingsAccount(0));
+        accounts.add(new AbstractBankAccount(0, new SavingsAccount()));
         accounts.get(0).deposit(100);
-        accounts.add(new SavingsAccount(1));
+        accounts.add(new AbstractBankAccount(1, new SavingsAccount()));
         accounts.get(1).deposit(200);
-        accounts.add(new SavingsAccount(2));
+        accounts.add(new AbstractBankAccount(2, new SavingsAccount()));
         accounts.get(2).deposit(50);
 
         BankAccount max1 = findMax(accounts);

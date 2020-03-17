@@ -20,3 +20,5 @@ Versions of Banking demo
 9. Use the Template Pattern in AbstractBankAccount 
 10. Use the Strategy Pattern - use OwnerStrategy in AbstractBankAccount, 
                                use InputCommand in BankClient
+11. Eliminate the Class Hierarchy - redesign the Template Method Pattern to the Strategy Pattern -
+    add interface TypeStrategy
