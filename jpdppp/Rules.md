@@ -70,3 +70,13 @@ This chapter uses the Strategy Pattern and the Command Pattern.
 ---------------------------------
 
 This chapter uses _object caching_ and _factories_.
+
+Caching reuses objects, thereby reducing the need for constructors.
+Immutable objects are good candidates for caching. If a class only needs
+a fixed number of immutable objects, then it can create and cache those
+objects when it is loaded. Such classes are called _singletons_. The Java 
+enum syntax is the preferred way to define singleton classes.
+
+A _factory_ is a class that encapsulates constructor usage. When a class 
+needs to create an object, it calls a method from the appropriate factory
+class.

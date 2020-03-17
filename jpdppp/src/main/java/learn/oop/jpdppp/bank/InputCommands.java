@@ -9,7 +9,7 @@ public enum InputCommands implements InputCommand {
         return -1;
     }),
     NEW("new", (sc, bank, current) -> {
-        int type = requestType(sc);
+        int type = requestAccountType(sc);
         boolean foreign = requestForeign(sc);
         int newCurrent = bank.newAccount(type, foreign);
         System.out.println("Your new account number is " + newCurrent);
@@ -52,8 +52,10 @@ public enum InputCommands implements InputCommand {
         return current;
     });
 
-    private String name;
-    private InputCommand inputCommand;
+    private static final String ACCOUNT_TYPE_PROMPT = buildAccountTypePrompt();
+
+    private final String name;
+    private final InputCommand inputCommand;
 
     InputCommands(String name, InputCommand inputCommand) {
         this.name = name;
@@ -76,8 +78,19 @@ public enum InputCommands implements InputCommand {
         return answer == 1;
     }
 
-    private static int requestType(Scanner scanner) {
-        System.out.print("Enter type (1-savings, 2-checking, 3-interest checking): ");
+    private static int requestAccountType(Scanner scanner) {
+        System.out.print(ACCOUNT_TYPE_PROMPT);
         return scanner.nextInt();
+    }
+
+    private static String buildAccountTypePrompt() {
+        AccountFactory[] factories = AccountFactories.values();
+        StringBuilder builder = new StringBuilder("Enter account type (");
+        int last = factories.length - 1;
+        for (int i = 0; i < last; i++) {
+            builder.append(i + 1).append("=").append(factories[i]).append(", ");
+        }
+        builder.append(last + 1).append("=").append(factories[last]).append("): ");
+        return builder.toString();
     }
 }

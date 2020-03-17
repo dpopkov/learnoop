@@ -25,3 +25,4 @@ Versions of Banking demo
 12. Use object caching - add enum Owners and InputCommands,
     encapsulate object creation - add AccountFactory.
 13. Make abstract factory, add 3 concrete account factories, cache factory objects in interface AccountFactory.
+14. Implement the factory objects as enum constants in AccountFactories, delete concrete factories.
