@@ -24,3 +24,4 @@ Versions of Banking demo
     add interface TypeStrategy
 12. Use object caching - add enum Owners and InputCommands,
     encapsulate object creation - add AccountFactory.
+13. Make abstract factory, add 3 concrete account factories, cache factory objects in interface AccountFactory.

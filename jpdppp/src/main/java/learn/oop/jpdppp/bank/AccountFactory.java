@@ -1,27 +1,16 @@
 package learn.oop.jpdppp.bank;
 
 public interface AccountFactory {
-    static BankAccount createSavings(int acctNum) {
-        return new SavingsAccount(acctNum);
-    }
+    BankAccount create(int acctNum);
 
-    static BankAccount createRegularChecking(int acctNum) {
-        return new RegularChecking(acctNum);
-    }
-
-    static BankAccount createInterestChecking(int acctNum) {
-        return new InterestChecking(acctNum);
-    }
+    AccountFactory[] factories = {
+            new SavingsFactory(),
+            new RegularCheckingFactory(),
+            new InterestCheckingFactory()
+    };
 
     static BankAccount createAccount(int type, int acctNum) {
-        BankAccount bankAccount;
-        if (type == 1) {
-            bankAccount = createSavings(acctNum);
-        } else if (type == 2) {
-            bankAccount = createRegularChecking(acctNum);
-        } else {
-            bankAccount = createInterestChecking(acctNum);
-        }
-        return bankAccount;
+        AccountFactory factory = factories[type - 1];
+        return factory.create(acctNum);
     }
 }
