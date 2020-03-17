@@ -18,15 +18,6 @@ public class SavingsAccount extends AbstractBankAccount {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (!(obj instanceof SavingsAccount)) {
-            return false;
-        }
-        SavingsAccount sa = (SavingsAccount) obj;
-        return getAcctNum() == sa.getAcctNum();
-    }
-
-    @Override
     protected String accountType() {
         return "Savings";
     }

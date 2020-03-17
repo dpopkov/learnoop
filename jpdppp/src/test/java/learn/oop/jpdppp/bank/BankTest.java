@@ -22,7 +22,7 @@ public class BankTest {
         int acct1 = bank.newAccount();
         assertEquals(0, acct1);
         int acct2 = bank.newAccount();
-        assertEquals("Non expected account number",1, acct2);
+        assertEquals("Non expected account number", 1, acct2);
     }
 
     @Test

@@ -1,5 +1,7 @@
 package learn.oop.jpdppp.bank;
 
+import java.util.Objects;
+
 public abstract class AbstractBankAccount implements BankAccount {
     protected final int acctNum;
     protected int balance = 0;
@@ -50,6 +52,11 @@ public abstract class AbstractBankAccount implements BankAccount {
         }
         BankAccount ba = (BankAccount) obj;
         return getAcctNum() == ba.getAcctNum();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(acctNum);
     }
 
     @Override
