@@ -1,11 +1,13 @@
 package learn.oop.jpdppp.bank;
 
+import java.util.Iterator;
 import java.util.Map;
+import java.util.stream.Stream;
 
 /**
  * Bank is responsible for managing of several bank accounts.
  */
-public class Bank {
+public class Bank implements Iterable<BankAccount> {
     /** Map of accounts where key denotes the account number and value is a bank account. */
     private final Map<Integer, BankAccount> accounts;
     private int nextAcct;
@@ -74,5 +76,14 @@ public class Bank {
 
     public int nextAcctNum() {
         return nextAcct;
+    }
+
+    @Override
+    public Iterator<BankAccount> iterator() {
+        return accounts.values().iterator();
+    }
+
+    public Stream<BankAccount> stream() {
+        return accounts.values().stream();
     }
 }

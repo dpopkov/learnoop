@@ -26,3 +26,4 @@ Versions of Banking demo
     encapsulate object creation - add AccountFactory.
 13. Make abstract factory, add 3 concrete account factories, cache factory objects in interface AccountFactory.
 14. Implement the factory objects as enum constants in AccountFactories, delete concrete factories.
+15. Make Bank Iterable, add method stream().

@@ -86,3 +86,11 @@ class.
 ---------------------------
 
 This chapter uses external and internal iteration, the Visitor Pattern.
+
+An _iterator_ generates a sequence of elements. It has the two methods _next_
+and _hasNext_. An _iterable_ is an object that has an associated iterator.
+Collections are the most common examples iterables.
+
+The __iterator pattern_ organizes the iterable and iterator classes into 
+separate, parallel hierarchies, with each iterable class having a corresponding
+iterator class.
