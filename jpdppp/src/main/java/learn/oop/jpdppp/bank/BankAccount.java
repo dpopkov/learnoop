@@ -1,6 +1,8 @@
 package learn.oop.jpdppp.bank;
 
-public interface BankAccount extends Comparable<BankAccount> {
+import java.io.Serializable;
+
+public interface BankAccount extends Comparable<BankAccount>, Serializable {
     int getAcctNum();
     int getBalance();
     boolean isForeign();

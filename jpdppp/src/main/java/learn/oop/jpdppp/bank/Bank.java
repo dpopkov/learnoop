@@ -1,5 +1,7 @@
 package learn.oop.jpdppp.bank;
 
+import learn.oop.jpdppp.bank.adapters.Loan;
+
 import java.util.Iterator;
 import java.util.Map;
 import java.util.stream.Stream;
@@ -85,5 +87,10 @@ public class Bank implements Iterable<BankAccount> {
 
     public Stream<BankAccount> stream() {
         return accounts.values().stream();
+    }
+
+    public Loan[] loans() {
+        // This is empty implementation just for referencing in FIClient
+        return new Loan[0];
     }
 }

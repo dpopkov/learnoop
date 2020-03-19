@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class BankProgram {
     public static void main(String[] args) {
-        SavedBankInfo info = new SavedBankInfo("data/bank.info");
+        SavedBankInfo info = new SavedBankInfo("data/bank.info.ser");
         Map<Integer, BankAccount> accounts = info.getAccounts();
         int nextAcct = info.nextAcctNum();
         Bank bank = new Bank(accounts, nextAcct);

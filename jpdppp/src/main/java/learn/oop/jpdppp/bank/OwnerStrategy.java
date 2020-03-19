@@ -1,6 +1,8 @@
 package learn.oop.jpdppp.bank;
 
-public interface OwnerStrategy {
+import java.io.Serializable;
+
+public interface OwnerStrategy extends Serializable {
     boolean isForeign();
     int fee();
 }

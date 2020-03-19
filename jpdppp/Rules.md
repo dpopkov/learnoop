@@ -94,3 +94,8 @@ Collections are the most common examples iterables.
 The __iterator pattern_ organizes the iterable and iterator classes into 
 separate, parallel hierarchies, with each iterable class having a corresponding
 iterator class.
+
+
+7 - Adapters
+------------
+
