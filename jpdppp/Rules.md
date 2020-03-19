@@ -80,3 +80,9 @@ enum syntax is the preferred way to define singleton classes.
 A _factory_ is a class that encapsulates constructor usage. When a class 
 needs to create an object, it calls a method from the appropriate factory
 class.
+
+
+6 - Iterables and Iteration
+---------------------------
+
+This chapter uses external and internal iteration, the Visitor Pattern.
