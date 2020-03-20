@@ -28,3 +28,5 @@ Versions of Banking demo
 14. Implement the factory objects as enum constants in AccountFactories, delete concrete factories.
 15. Make Bank Iterable, add method stream().
 16. Saving state as one object, make BankAccount Serializable, add FIAccountInfo, Loan, add adapters.
+17. Add decorators: UnmodifiableAccount, UnmodifiableBankIterator, SuspiciousAccount, wrapper: BankAccountWrapper, 
+                    LoanAuthorizer and its implementations, change method authorizeLoan in Bank.

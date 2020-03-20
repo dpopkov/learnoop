@@ -99,3 +99,24 @@ iterator class.
 7 - Adapters
 ------------
 
+8 - Decorators
+--------------
+
+This chapter examines several useful applications of decorators.
+
+The decorator pattern asserts that the decorations for an interface form a hierarchy.
+The root of the hierarchy is an abstract wrapper class that holds a reference to 
+its wrapped class and provides default implementations of the interface methods.
+The decorator classes are the subclasses of the wrapper class. 
+The non-decorator classes of the interface are called its _base classes_.
+
+A decorator class, like an adapter, can be thought of as transforming
+an input object into an output object. The difference is that the output
+of a decorator has the same type as its input. This feature means that
+decorators can be composed.
+
+The __chain of command pattern__ is a special case of the decorator pattern
+where the decorators perform tasks instead of calculating values. Each decorator
+understands some part of the task. A request to perform the task is sent to
+the first decorator in the chain and is passed down the chain until it encounters
+a decorator that can perform that task.

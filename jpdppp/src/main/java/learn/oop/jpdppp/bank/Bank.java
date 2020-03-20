@@ -1,6 +1,9 @@
 package learn.oop.jpdppp.bank;
 
 import learn.oop.jpdppp.bank.adapters.Loan;
+import learn.oop.jpdppp.bank.decorators.LoanAuthorizer;
+import learn.oop.jpdppp.bank.decorators.SuspiciousAccount;
+import learn.oop.jpdppp.bank.decorators.UnmodifiableBankIterator;
 
 import java.util.Iterator;
 import java.util.Map;
@@ -44,11 +47,11 @@ public class Bank implements Iterable<BankAccount> {
         bankAccount.deposit(amount);
     }
 
-    /** Determines whether the specified account has enough money to be used as collateral for a loan.
-     * The criterion is that the account must contain at least half of the loan amount. */
+    /** Determines whether the specified account has enough money to be used as collateral for a loan. */
     public boolean authorizeLoan(int acctNum, int loan) {
         BankAccount bankAccount = accounts.get(acctNum);
-        return bankAccount.hasEnoughCollateral(loan);
+        LoanAuthorizer auth = LoanAuthorizer.getAuthorizer(bankAccount);
+        return auth.authorizeLoan(loan);
     }
 
     /** Sets <code>foreign</code> property of the specified account. */
@@ -82,7 +85,7 @@ public class Bank implements Iterable<BankAccount> {
 
     @Override
     public Iterator<BankAccount> iterator() {
-        return accounts.values().iterator();
+        return new UnmodifiableBankIterator(accounts.values().iterator());
     }
 
     public Stream<BankAccount> stream() {
@@ -92,5 +95,11 @@ public class Bank implements Iterable<BankAccount> {
     public Loan[] loans() {
         // This is empty implementation just for referencing in FIClient
         return new Loan[0];
+    }
+
+    public void makeSuspicious(int accountNumber) {
+        BankAccount account = accounts.get(accountNumber);
+        BankAccount wrapped = new SuspiciousAccount(account);
+        accounts.put(accountNumber, wrapped);
     }
 }
