@@ -120,3 +120,8 @@ where the decorators perform tasks instead of calculating values. Each decorator
 understands some part of the task. A request to perform the task is sent to
 the first decorator in the chain and is passed down the chain until it encounters
 a decorator that can perform that task.
+
+
+9 - Composites
+--------------
+
