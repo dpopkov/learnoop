@@ -125,3 +125,16 @@ a decorator that can perform that task.
 9 - Composites
 --------------
 
+A _composite object_ has a hierarchical structure. Each object in the hierarchy implements the same interface,
+called the _composite interface_.
+The _composite pattern_ describes the preferred way to organize the classes of a composite object.
+These classes form two categories: _base classes_, whose objects are the leaves of the composite hierarchy,
+and _recursive classes_, whose objects form the interior of the hierarchy.
+Each recursive object wraps one or more objects that implement the composite interface.
+These wrapped objects are called its _children_.
+
+Syntactically, a composite object is very similar to a decorator object; the only difference is that 
+a composite can have multiple children whereas a decorator can have just one.
+This difference completely changes their purpose. A decorator is a chain, where the recursive objects 
+serve to enhance the methods of the base object at the end of the chain.
+A composite is a tree, whose non-root objects combine to execute the methods of the root.

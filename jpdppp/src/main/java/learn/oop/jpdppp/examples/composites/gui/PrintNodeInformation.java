@@ -1,4 +1,4 @@
-package learn.oop.jpdppp.bank.gui;
+package learn.oop.jpdppp.examples.composites.gui;
 
 import javafx.application.Application;
 import javafx.geometry.Bounds;
