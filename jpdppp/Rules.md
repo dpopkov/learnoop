@@ -142,3 +142,7 @@ A composite is a tree, whose non-root objects combine to execute the methods of 
 
 10 - Observers
 --------------
+
+An _observer_ is an object whose job is to respond to one of more _events_.
+An _observable_ is an object that recognizes when certain events occur, and keeps a list of observers
+interested in those events. When an event occurs it informs its observers. 

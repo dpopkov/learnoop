@@ -8,21 +8,25 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class AccountCreationWindow extends Application {
+
+    public static final String INITIAL_TITLE = "Create a New Bank Account";
+
     @Override
     public void start(Stage stage) {
-        Pane root = createNodeHierarchy();
+        Pane root = createNodeHierarchy(stage);
         stage.setScene(new Scene(root));
         stage.setTitle("Bank Account Demo");
         stage.show();
     }
 
-    private Pane createNodeHierarchy() {
+    private Pane createNodeHierarchy(Stage stage) {
         VBox p3 = new VBox(8);
         p3.setAlignment(Pos.CENTER);
         p3.setPadding(new Insets(10));
@@ -38,7 +42,11 @@ public class AccountCreationWindow extends Application {
         p4.setPadding(new Insets(10));
 
         CheckBox checkBox = new CheckBox("foreign owned?");
+        checkBox.selectedProperty().addListener(
+                (obs, oldValue, newValue) -> checkBox.setTextFill(newValue ? Color.GREEN : Color.RED));
         Button button = new Button("Create Account");
+        button.setDisable(true);
+        button.disableProperty().bind(choiceBox.valueProperty().isNull());
         p4.getChildren().addAll(checkBox, button);
 
         HBox p2 = new HBox(8);
@@ -50,16 +58,26 @@ public class AccountCreationWindow extends Application {
         p1.setAlignment(Pos.CENTER);
         p1.setPadding(new Insets(10));
 
-        Label title = new Label("Create a New Bank Account");
+        Label title = new Label(INITIAL_TITLE);
         double size = title.getFont().getSize();
         title.setFont(new Font(size * 2));
         title.setTextFill(Color.GREEN);
+        title.addEventHandler(MouseEvent.MOUSE_ENTERED, e -> title.setTextFill(Color.RED));
+        title.addEventHandler(MouseEvent.MOUSE_EXITED, e -> title.setTextFill(Color.GREEN));
         p1.getChildren().addAll(title, p2);
+
+        p1.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+            checkBox.setSelected(false);
+            choiceBox.setValue(null);
+            title.setText(INITIAL_TITLE);
+            stage.sizeToScene();
+        });
 
         button.setOnAction(event -> {
             String foreign = checkBox.isSelected() ? "Foreign " : "";
             String accountType = choiceBox.getValue();
             title.setText(foreign + accountType + " Account Created");
+            stage.sizeToScene();
         });
         return p1;
     }
