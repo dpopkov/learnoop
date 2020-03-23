@@ -5,8 +5,7 @@ import learn.oop.jpdppp.bank.decorators.LoanAuthorizer;
 import learn.oop.jpdppp.bank.decorators.SuspiciousAccount;
 import learn.oop.jpdppp.bank.decorators.UnmodifiableBankIterator;
 
-import java.util.Iterator;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Stream;
 
 /**
@@ -16,10 +15,24 @@ public class Bank implements Iterable<BankAccount> {
     /** Map of accounts where key denotes the account number and value is a bank account. */
     private final Map<Integer, BankAccount> accounts;
     private int nextAcct;
+    private final Map<BankEvent, List<BankObserver>> observers = new EnumMap<>(BankEvent.class);
 
     public Bank(Map<Integer, BankAccount> accounts, int nextAcct) {
         this.accounts = accounts;
         this.nextAcct = nextAcct;
+        for (BankEvent e : BankEvent.values()) {
+            observers.put(e, new ArrayList<>());
+        }
+    }
+
+    public void addObserver(BankEvent event, BankObserver observer) {
+        observers.get(event).add(observer);
+    }
+
+    public void notifyObservers(BankEvent event, BankAccount account, int depositAmount) {
+        for (BankObserver observer : observers.get(event)) {
+            observer.update(event, account, depositAmount);
+        }
     }
 
     /** Allocates a new account number, and assigns it to the map with an initial balance of 0. */
@@ -28,6 +41,7 @@ public class Bank implements Iterable<BankAccount> {
         BankAccount bankAccount = AccountFactory.createAccount(type, acctNum);
         bankAccount.setForeign(isForeign);
         accounts.put(bankAccount.getAcctNum(), bankAccount);
+        notifyObservers(BankEvent.NEW, bankAccount, 0);
         return acctNum;
     }
 
@@ -45,6 +59,7 @@ public class Bank implements Iterable<BankAccount> {
     public void deposit(int acctNu, int amount) {
         BankAccount bankAccount = accounts.get(acctNu);
         bankAccount.deposit(amount);
+        notifyObservers(BankEvent.DEPOSIT, bankAccount, amount);
     }
 
     /** Determines whether the specified account has enough money to be used as collateral for a loan. */
@@ -58,6 +73,12 @@ public class Bank implements Iterable<BankAccount> {
     public void setForeign(int acctNum, boolean isForeign) {
         BankAccount bankAccount = accounts.get(acctNum);
         bankAccount.setForeign(isForeign);
+        notifyObservers(BankEvent.SET_FOREIGN, bankAccount, 0);
+    }
+
+    public boolean isForeign(int acctNum) {
+        BankAccount bankAccount = accounts.get(acctNum);
+        return bankAccount.isForeign();
     }
 
     /** Increases the balance of savings accounts by a fixed interest rate. */
@@ -65,6 +86,7 @@ public class Bank implements Iterable<BankAccount> {
         for (BankAccount bankAccount : accounts.values()) {
             bankAccount.addInterest();
         }
+        notifyObservers(BankEvent.INTEREST, null, 0);
     }
 
     /** Returns string representation that contains balance of every account. */

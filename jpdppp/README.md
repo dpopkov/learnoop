@@ -30,3 +30,4 @@ Versions of Banking demo
 16. Saving state as one object, make BankAccount Serializable, add FIAccountInfo, Loan, add adapters.
 17. Add decorators: UnmodifiableAccount, UnmodifiableBankIterator, SuspiciousAccount, wrapper: BankAccountWrapper, 
                     LoanAuthorizer and its implementations, change method authorizeLoan in Bank.
+18. Add interface BankObserver, enum BankEvent, add method notifyObservers to Bank. 

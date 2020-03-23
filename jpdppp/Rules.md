@@ -138,3 +138,7 @@ a composite can have multiple children whereas a decorator can have just one.
 This difference completely changes their purpose. A decorator is a chain, where the recursive objects 
 serve to enhance the methods of the base object at the end of the chain.
 A composite is a tree, whose non-root objects combine to execute the methods of the root.
+
+
+10 - Observers
+--------------
