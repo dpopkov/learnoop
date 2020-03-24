@@ -8,17 +8,18 @@ import java.util.function.Predicate;
 /**
  * Illustrates the use of several <code>Stream</code> methods.
  */
-public class StreamAccountStats {
+public class StreamStatModel {
     private final Bank bank;
 
-    public StreamAccountStats(Bank bank) {
+    public StreamStatModel(Bank bank) {
         this.bank = bank;
     }
 
-    public void printAccounts7(Predicate<BankAccount> predicate) {
-        bank.stream()
+    public String getAccounts7(Predicate<BankAccount> predicate) {
+        return bank.stream()
                 .filter(predicate)
-                .forEach(System.out::println);
+                .map(Object::toString)
+                .reduce("", (s1, s2) -> s1 + s2 + "\n");
     }
 
     public int maxBalance4(Predicate<BankAccount> predicate) {
