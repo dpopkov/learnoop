@@ -3,56 +3,40 @@ package learn.oop.jpdppp.bank;
 import java.util.Scanner;
 
 public enum InputCommands implements InputCommand {
-    QUIT("quit", (sc, bank, current) -> {
+    QUIT("quit", (sc, controller) -> {
         sc.close();
-        System.out.println("Bye!");
-        return -1;
+        return "Bye!";
     }),
-    NEW("new", (sc, bank, current) -> {
-        int type = requestAccountType(sc);
+    NEW("new", (sc, controller) -> {
+        System.out.print(controller.getAccountTypePrompt());
+        int type = sc.nextInt();
         boolean foreign = requestForeign(sc);
-        int newCurrent = bank.newAccount(type, foreign);
-        System.out.println("Your new account number is " + newCurrent);
-        return newCurrent;
+        return controller.newCmd(type, foreign);
     }),
-    SELECT("select", (sc, bank, current) -> {
+    SELECT("select", (sc, controller) -> {
         System.out.print("Enter account #: ");
         int newCurrent = sc.nextInt();
-        int balance = bank.getBalance(newCurrent);
-        System.out.printf("The balance of account %d is %d%n", newCurrent, balance);
-        return newCurrent;
+        return controller.selectCmd(newCurrent);
     }),
-    DEPOSIT("deposit", (sc, bank, current) -> {
+    DEPOSIT("deposit", (sc, controller) -> {
         System.out.print("Enter deposit amount: ");
         int amt = sc.nextInt();
-        bank.deposit(current, amt);
-        return current;
+        return controller.depositCmd(amt);
     }),
-    LOAN("loan", (sc, bank, current) -> {
+    LOAN("loan", (sc, controller) -> {
         System.out.print("Enter loan amount: ");
         int loan = sc.nextInt();
-        boolean authorized = bank.authorizeLoan(current, loan);
-        if (authorized) {
-            System.out.println("Your loan is approved");
-        } else {
-            System.out.println("Your loan is denied");
-        }
-        return current;
+        return controller.loanCmd(loan);
     }),
-    SHOW("show", (sc, bank, current) -> {
-        System.out.println(bank.toString());
-        return current;
+    SHOW("show", (sc, controller) -> {
+        return controller.showCmd();
     }),
-    INTEREST("interest", (sc, bank, current) -> {
-        bank.addInterest();
-        return current;
+    INTEREST("interest", (sc, controller) -> {
+        return controller.interestCmd();
     }),
-    SET_FOREIGN("set foreign", (sc, bank, current) -> {
-        bank.setForeign(current, requestForeign(sc));
-        return current;
+    SET_FOREIGN("set foreign", (sc, controller) -> {
+        return controller.setForeignCmd(requestForeign(sc));
     });
-
-    private static final String ACCOUNT_TYPE_PROMPT = buildAccountTypePrompt();
 
     private final String name;
     private final InputCommand inputCommand;
@@ -63,8 +47,8 @@ public enum InputCommands implements InputCommand {
     }
 
     @Override
-    public int execute(Scanner scanner, Bank bank, int current) {
-        return inputCommand.execute(scanner, bank, current);
+    public String execute(Scanner scanner, InputController controller) {
+        return inputCommand.execute(scanner, controller);
     }
 
     @Override
@@ -76,21 +60,5 @@ public enum InputCommands implements InputCommand {
         System.out.print("Enter status (1-foreign, 2-domestic): ");
         int answer = scanner.nextInt();
         return answer == 1;
-    }
-
-    private static int requestAccountType(Scanner scanner) {
-        System.out.print(ACCOUNT_TYPE_PROMPT);
-        return scanner.nextInt();
-    }
-
-    private static String buildAccountTypePrompt() {
-        AccountFactory[] factories = AccountFactories.values();
-        StringBuilder builder = new StringBuilder("Enter account type (");
-        int last = factories.length - 1;
-        for (int i = 0; i < last; i++) {
-            builder.append(i + 1).append("=").append(factories[i]).append(", ");
-        }
-        builder.append(last + 1).append("=").append(factories[last]).append("): ");
-        return builder.toString();
     }
 }

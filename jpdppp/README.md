@@ -31,3 +31,4 @@ Versions of Banking demo
 17. Add decorators: UnmodifiableAccount, UnmodifiableBankIterator, SuspiciousAccount, wrapper: BankAccountWrapper, 
                     LoanAuthorizer and its implementations, change method authorizeLoan in Bank.
 18. Add interface BankObserver, enum BankEvent, add method notifyObservers to Bank. 
+19. Implement MVC pattern - add InputController

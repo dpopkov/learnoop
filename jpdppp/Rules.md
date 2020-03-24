@@ -146,3 +146,12 @@ A composite is a tree, whose non-root objects combine to execute the methods of 
 An _observer_ is an object whose job is to respond to one of more _events_.
 An _observable_ is an object that recognizes when certain events occur, and keeps a list of observers
 interested in those events. When an event occurs it informs its observers. 
+
+
+11 - Model, View, and Controller
+--------------------------------
+
+### The Model-View-Controller Rule
+
+__A program should be designed so that its model, view, and controller code 
+belong to distinct classes.__

@@ -4,11 +4,10 @@ import java.util.Scanner;
 
 public interface InputCommand {
     /**
-     * Execute an action upon the specified bank requesting appropriate input if needed.
+     * Execute an action upon the specified controller requesting appropriate input if needed.
      * @param scanner scanner used for user input
-     * @param bank bank to act upon
-     * @param current number of the current account
-     * @return number of the current account that may be changed during the action
+     * @param controller bank to act upon
+     * @return response of the action
      */
-    int execute(Scanner scanner, Bank bank, int current);
+    String execute(Scanner scanner, InputController controller);
 }

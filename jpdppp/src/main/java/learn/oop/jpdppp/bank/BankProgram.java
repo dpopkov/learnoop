@@ -18,7 +18,8 @@ public class BankProgram {
             }
         });
         Scanner scanner = new Scanner(System.in);
-        BankClient client = new BankClient(scanner, bank);
+        InputController controller = new InputController(bank);
+        BankClient client = new BankClient(scanner, controller);
         client.run();
         info.saveMap(accounts, bank.nextAcctNum());
     }
