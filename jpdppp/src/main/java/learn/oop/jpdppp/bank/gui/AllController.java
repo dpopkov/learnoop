@@ -1,5 +1,7 @@
 package learn.oop.jpdppp.bank.gui;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import learn.oop.jpdppp.bank.Bank;
 import learn.oop.jpdppp.bank.BankAccount;
 import learn.oop.jpdppp.bank.BankEvent;
@@ -7,7 +9,7 @@ import learn.oop.jpdppp.bank.BankObserver;
 
 public class AllController implements BankObserver {
     private final Bank bank;
-    private AllView view;
+    private final ObservableList<BankAccount> accounts = FXCollections.observableArrayList();
 
     public AllController(Bank bank) {
         this.bank = bank;
@@ -15,11 +17,9 @@ public class AllController implements BankObserver {
         bank.addObserver(BankEvent.DEPOSIT, this);
         bank.addObserver(BankEvent.SET_FOREIGN, this);
         bank.addObserver(BankEvent.INTEREST, this);
-    }
-
-    public void setView(AllView view) {
-        this.view = view;
-        refreshAccounts();
+        for (BankAccount a : bank) {
+            accounts.add(a);
+        }
     }
 
     public void interestButton() {
@@ -28,14 +28,28 @@ public class AllController implements BankObserver {
 
     @Override
     public void update(BankEvent event, BankAccount account, int depositAmount) {
-        refreshAccounts();
+        if (event == BankEvent.INTEREST) {
+            refreshAllAccounts();
+        } else if (event == BankEvent.NEW) {
+            accounts.add(account);
+        } else {
+            int i = accounts.indexOf(account);
+            refreshAccount(i);
+        }
     }
 
-    private void refreshAccounts() {
-        StringBuilder result = new StringBuilder();
-        for (BankAccount a : bank) {
-            result.append(a.toString()).append("\n");
+    public ObservableList<BankAccount> getAccountList() {
+        return accounts;
+    }
+
+    private void refreshAccount(int i) {
+        // a no-op, to force the list to notify its observer
+        accounts.set(i, accounts.get(i));
+    }
+
+    private void refreshAllAccounts() {
+        for (int i = 0; i < accounts.size(); i++) {
+            refreshAccount(i);
         }
-        view.setAccounts(result.toString());
     }
 }

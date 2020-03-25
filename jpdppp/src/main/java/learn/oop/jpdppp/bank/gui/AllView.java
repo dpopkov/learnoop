@@ -4,25 +4,23 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import learn.oop.jpdppp.bank.BankAccount;
 
 public class AllView {
     private final Pane root;
-    private final TextArea accounts = new TextArea();
+    private final ListView<BankAccount> accounts = new ListView<>();
 
     public AllView(AllController controller) {
-        controller.setView(this);
         root = createNodeHierarchy(controller);
+        accounts.setItems(controller.getAccountList());
     }
 
     private Pane createNodeHierarchy(AllController controller) {
-        accounts.setPrefColumnCount(32);
-        accounts.setPrefRowCount(12);
-
         Button interestButton = new Button("Add Interest");
         interestButton.setOnAction(e -> controller.interestButton());
 
@@ -39,9 +37,5 @@ public class AllView {
 
     public Pane getRoot() {
         return root;
-    }
-
-    public void setAccounts(String allAccountsText) {
-        accounts.setText(allAccountsText);
     }
 }
