@@ -22,7 +22,7 @@ public class AccountCreationWindow extends Application {
     public void start(Stage stage) {
         Pane root = createNodeHierarchy(stage);
         stage.setScene(new Scene(root));
-        stage.setTitle("Bank Account Demo");
+        stage.setTitle("Bank Account GUI Demo");
         stage.show();
     }
 
