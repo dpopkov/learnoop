@@ -1,4 +1,4 @@
-package learn.oop.myjcmoo;
+package learn.oop.myjcmoo.p2;
 
 /**
  * <h3>Putting objects where it doesn't look possible</h3>
@@ -7,7 +7,7 @@ package learn.oop.myjcmoo;
  * Do not model a missing object with null.
  * Use an object of a class to model the missing object.
  */
-public class P2PutObjectWhereNotPossible {
+public class PutObjectWhereNotPossible {
 
     /** Example of if-else branching code. */
     public void showItOld(String data) {
@@ -28,12 +28,12 @@ public class P2PutObjectWhereNotPossible {
     }
 
     public static void main(String[] args) {
-        P2PutObjectWhereNotPossible p = new P2PutObjectWhereNotPossible();
+        PutObjectWhereNotPossible p = new PutObjectWhereNotPossible();
         p.showItOld("Usual String");
         p.showItNew(new MaybeString("Object that may be String"));
     }
 
-    /** This class represents a String or nothing. */
+    /** This hypothetical fictional class represents a String or nothing. */
     private static class MaybeString {
 
         private final String value;
