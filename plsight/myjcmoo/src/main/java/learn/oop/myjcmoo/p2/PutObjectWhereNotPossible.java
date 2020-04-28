@@ -20,6 +20,10 @@ public class PutObjectWhereNotPossible {
         System.out.println(upper);
     }
 
+    /* Advice:
+    Do not model a missing object with null.
+    Use an object of a class to model the missing object. */
+
     /** Example of OOP code. */
     public void showItNew(MaybeString data) {
         MaybeString upper = data.toUpperCase();

@@ -29,10 +29,19 @@ Replace branching with polymorphic calls.
 Immutable objects. How to avoid bugs due to mutability.  
 Avoid nulls. Null is not an object.  
 Optional<T> type form Java 8.  No more nulls in business applications.  
-  
+
+#### Advice
+
+__Don't change code to modify behavior.__  
+__Try to substitute an object with a different behavior.__
 
 `learn.oop.myjcmoo.p2.PutObjectWhereNotPossible` - Putting objects where it doesn't look possible
 
+#### Motivation to write object-oriented code
+* Business applications are hard to make right
+* Makes software design easier
 
 #### Module 3 - Rendering Branching over Boolean Flags Obsolete
+
+Turning branching logic into explicit state objects.
 

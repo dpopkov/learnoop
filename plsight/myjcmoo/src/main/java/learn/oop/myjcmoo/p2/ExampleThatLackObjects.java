@@ -32,6 +32,9 @@ public class ExampleThatLackObjects {
         }
         return sum;
     }
+    /* This class is the consumer.
+    It needs a summation service.
+    Consumers should not implement services themselves. */
 
     public static void main(String[] args) {
 
