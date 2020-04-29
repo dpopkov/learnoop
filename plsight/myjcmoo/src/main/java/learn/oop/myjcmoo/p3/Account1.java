@@ -10,7 +10,7 @@ import java.math.BigDecimal;
  * (e.g by showing an ID card once).
  * Client can close the account.
  */
-public class Account {
+public class Account1 {
     private boolean isVerified;
     private boolean isClosed;
     private boolean isFrozen;
@@ -18,7 +18,7 @@ public class Account {
 
     private AccountUnfrozen onUnfrozen;
 
-    public Account(AccountUnfrozen onUnfrozen) {
+    public Account1(AccountUnfrozen onUnfrozen) {
         balance = BigDecimal.ZERO;
         this.onUnfrozen = onUnfrozen;
     }
