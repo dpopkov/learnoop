@@ -3,7 +3,7 @@ package learn.oop.linkeddp.creational.singleton;
 public class PrintSpooler {
     private static PrintSpooler spooler;
 
-    private static boolean initialized = false;
+    private static volatile boolean initialized = false;
 
     private PrintSpooler() {
     }
@@ -16,14 +16,19 @@ public class PrintSpooler {
         if (initialized) {
             return spooler;
         }
-        try {
-            Thread.sleep(10L);      // Allows other threads to come in to show the problem
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        synchronized (PrintSpooler.class) {
+            if (initialized) {
+                return spooler;
+            }
+            try {
+                Thread.sleep(10L);      // Allows other threads to come in to show the problem
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            spooler = new PrintSpooler();
+            spooler.init();
+            initialized = true;
+            return spooler;
         }
-        spooler = new PrintSpooler();
-        spooler.init();
-        initialized = true;
-        return spooler;
     }
 }

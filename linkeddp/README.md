@@ -18,3 +18,4 @@ Creational Patterns
 ### Singleton
 [PrintSpooler](src/main/java/learn/oop/linkeddp/creational/singleton/PrintSpooler.java),
 [ResourceManager](src/main/java/learn/oop/linkeddp/creational/singleton/ResourceManager.java)  
+[PrintSpoolerEarlyInitialized](src/main/java/learn/oop/linkeddp/creational/singleton/PrintSpoolerEarlyInitialized.java)  
