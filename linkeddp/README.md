@@ -19,3 +19,8 @@ Creational Patterns
 [PrintSpooler](src/main/java/learn/oop/linkeddp/creational/singleton/PrintSpooler.java),
 [ResourceManager](src/main/java/learn/oop/linkeddp/creational/singleton/ResourceManager.java)  
 [PrintSpoolerEarlyInitialized](src/main/java/learn/oop/linkeddp/creational/singleton/PrintSpoolerEarlyInitialized.java)  
+
+
+### Prototype
+[Rabbit](src/main/java/learn/oop/linkeddp/creational/prototype/Rabbit.java),
+[Main](src/main/java/learn/oop/linkeddp/creational/prototype/Main.java)
