@@ -27,3 +27,4 @@ Creational Patterns
 
 
 ### Factory Method
+The examples for factory method are horrible. I will not continue with this course. 
