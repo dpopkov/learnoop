@@ -24,3 +24,6 @@ Creational Patterns
 ### Prototype
 [Rabbit](src/main/java/learn/oop/linkeddp/creational/prototype/Rabbit.java),
 [Main](src/main/java/learn/oop/linkeddp/creational/prototype/Main.java)
+
+
+### Factory Method
