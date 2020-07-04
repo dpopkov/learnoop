@@ -11,5 +11,10 @@ Creational Patterns
 [Builder](src/main/java/learn/oop/linkeddp/creational/builder/Builder.java)  
 
 #### Complex constructions
-[RoomBuilder](src/main/java/learn/oop/linkeddp/creational/builder/RoomBuilder.java)  
+[RoomBuilder](src/main/java/learn/oop/linkeddp/creational/builder/RoomBuilder.java),
 [RoomListBuilder](src/main/java/learn/oop/linkeddp/creational/builder/RoomListBuilder.java)  
+
+
+### Singleton
+[PrintSpooler](src/main/java/learn/oop/linkeddp/creational/singleton/PrintSpooler.java),
+[ResourceManager](src/main/java/learn/oop/linkeddp/creational/singleton/ResourceManager.java)  
