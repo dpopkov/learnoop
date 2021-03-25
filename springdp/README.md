@@ -11,6 +11,7 @@ Spring Design Patterns
 * [Structural Patterns in Spring](#structural-patterns-in-spring)
     * [5 - The Adapter Pattern](#5---the-adapter-pattern)
     * [6 - The Decorator Pattern](#6---the-decorator-pattern)
+    * [7 - The Proxy Pattern](#7---the-proxy-pattern)
 
 The Patterns of the Spring Framework
 ------------------------------------
@@ -269,5 +270,37 @@ reduces code while improves readability
 #### Example of Decorator Pattern
 * [decorator](src/main/java/learn/oop/springdp/springdp/decorator)
 * [test](src/test/java/learn/oop/springdp/springdp/decorator/PepperoniTest.java)
+
+[Top](#spring-design-patterns)
+
+### 7 - The Proxy Pattern
+
+#### Use in Spring
+* Every bean you create gets a proxy around it since Spring 4
+* Additional proxies are added, usually through annotation
+* Creating proxies in Spring usually revolves around aspect-oriented programming
+
+#### Pattern in a Nutshell
+* Use of an intermediary object in place of a real object
+* Intermediary protects the real object
+* Intermediary contols the instantiation and use of the real object
+* Intermediary can add behavior to real object
+
+#### Why Use This Pattern?
+* Expensive operations need to be protected and only called when needed
+* Behavior needs to be added to a method when it is called in specific situations
+* Remote object access
+
+#### Creation Strategy
+* Start with an interface
+* Create real object to extend the interface
+* Create proxy object to extend the interface and keep and 
+handle the real object
+* Create the object, add behavior, other protections as needed
+
+#### Implementations
+* When doing Spring development, seldom if ever would you use a raw Java proxy
+* With Spring, you would leverage AOP
+* @Transactional, @Cacheable, others
 
 [Top](#spring-design-patterns)
