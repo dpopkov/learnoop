@@ -6,3 +6,4 @@
 * linkeddp - Linkedin: Java Design Patterns
 * ooduj - Object-Oriented Design Using Java
 * plsight/myjcmoo - Pluralsight: Making Your Java Code More Object-oriented
+* [springdp](springdp) - Spring Design Patterns
