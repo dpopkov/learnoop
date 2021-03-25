@@ -6,6 +6,7 @@ Spring Design Patterns
 * [Creational Patterns in Spring](#creational-patterns-in-spring)
     * [1 - Factory Pattern](#1---factory-pattern)
     * [2 - The Builder Pattern](#2---the-builder-pattern)
+    * [3 - The Singleton Pattern](#3---the-singleton-pattern)
 
 The Patterns of the Spring Framework
 ------------------------------------
@@ -136,5 +137,37 @@ in [PetController](src/main/java/learn/oop/springdp/springdp/controller/PetContr
 #### Example of Builder Pattern
 * [Contact.Builder](src/main/java/learn/oop/springdp/springdp/builder/Contact.java) used
 in [ContactController](src/main/java/learn/oop/springdp/springdp/controller/ContactController.java)
+
+[Top](#spring-design-patterns)
+
+
+### 3 - The Singleton Pattern
+
+#### Use in Spring
+* Every bean by default is a singleton
+* Not a classic singleton, but behaves the same
+* Beans must be thread-safe
+
+#### Pattern in a Nutshell
+* Class stores reference to instance of itself
+* Constructor is private
+* Static __getInstance()__ method returns reference of self instance, or if not constructed
+it constructs in thread-safe manner
+* The __new__ command is never called on the class outside of the __getInstance()__ method
+
+#### Why Use This Pattern?
+* Expensive object creation
+* Control concurrency associated with shared resources
+* Storing static state for multiple parts of the application
+
+#### Creation Strategy
+* Private constructor
+* static instance
+* static getInstance() method with synchronized block on class itself (double check)
+
+#### Example of Singleton Pattern
+* [SingletonTraditional](src/main/java/learn/oop/springdp/springdp/singleton/SingletonTraditional.java)
+* [SingletonAsSpringBean](src/main/java/learn/oop/springdp/springdp/singleton/SingletonAsSpringBean.java)
+* [SingletonsTest](src/test/java/learn/oop/springdp/springdp/singleton/SingletonsTest.java)
 
 [Top](#spring-design-patterns)
