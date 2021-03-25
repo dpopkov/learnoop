@@ -4,9 +4,10 @@ Spring Design Patterns
 * [The Patterns of the Spring Framework](#the-patterns-of-the-spring-framework)
 * [Inversion of Control (IoC) Pattern](#inversion-of-control-ioc-pattern-1)
 * [Creational Patterns in Spring](#creational-patterns-in-spring)
-    * [1 - Factory Pattern](#1---factory-pattern)
+    * [1 - The Factory Pattern](#1---the-factory-pattern)
     * [2 - The Builder Pattern](#2---the-builder-pattern)
     * [3 - The Singleton Pattern](#3---the-singleton-pattern)
+    * [4 - The Prototype Pattern](#4---the-prototype-pattern)
 
 The Patterns of the Spring Framework
 ------------------------------------
@@ -86,7 +87,7 @@ to the container instead of the developer
 Creational Patterns in Spring
 -----------------------------
 
-### 1 - Factory Pattern
+### 1 - The Factory Pattern
 
 #### Use in Spring
 * BeanFactory
@@ -171,3 +172,40 @@ it constructs in thread-safe manner
 * [SingletonsTest](src/test/java/learn/oop/springdp/springdp/singleton/SingletonsTest.java)
 
 [Top](#spring-design-patterns)
+
+
+### 4 - The Prototype Pattern
+
+#### Use in Spring
+* Beans with scope marked as prototype are treated as such
+* In Spring, the bean configuration is used as the prototype
+* New instances are created, not cloned, when needed by runtime
+
+#### Pattern in a Nutshell
+* A class is created in a prototypical manner
+* Instance is cloned at runtime to give new instances that are not the prototype,
+but act the same and have the same state
+* In Java, this is usually done with the Cloneable interface
+* Prototypes are usually deep clones of objects to maintain safety
+
+#### Why Use This Pattern?
+* Very useful when object creation is expensive, but the wrapper needs to be unique
+* Useful with objects that must act thread-safe, but need to store state
+* Provide cost savings on object creation
+
+#### Creation Strategy
+* In Java
+    * Create abstract base class that implements Cloneable
+    * Extend that base class with prototype classes
+    * Override the clone method in prototype classes to provide specific behavior, 
+    to control what is cloned and what is created new
+    * Be sure to clone sensitive sub-objects to prevent thread issues
+* In Spring
+    * Use scope 'prototype'
+
+#### Example of Prototype Pattern (In Spring)
+* [PrototypesConfig](src/main/java/learn/oop/springdp/springdp/prototype/PrototypesConfig.java)
+* [PrototypesTest](src/test/java/learn/oop/springdp/springdp/prototype/PrototypesTest.java)
+
+[Top](#spring-design-patterns)
+
