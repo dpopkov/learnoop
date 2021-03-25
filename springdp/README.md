@@ -10,6 +10,7 @@ Spring Design Patterns
     * [4 - The Prototype Pattern](#4---the-prototype-pattern)
 * [Structural Patterns in Spring](#structural-patterns-in-spring)
     * [5 - The Adapter Pattern](#5---the-adapter-pattern)
+    * [6 - The Decorator Pattern](#6---the-decorator-pattern)
 
 The Patterns of the Spring Framework
 ------------------------------------
@@ -239,5 +240,34 @@ reduces code while improves readability
 * [AppleAdapter](src/main/java/learn/oop/springdp/springdp/adapter/AppleAdapter.java)
 * [AppleAdapterTest](src/test/java/learn/oop/springdp/springdp/adapter/AppleAdapterTest.java)
 
+
+[Top](#spring-design-patterns)
+
+### 6 - The Decorator Pattern
+
+#### Use in Spring
+* The framework itself uses decorators
+* Injecting decorated objects is difficult in Spring because of how bean references work
+* The use of @Qualifier annotation becomes required
+
+#### Pattern in a Nutshell
+* Adding responsibilities to an object dynamically at runtime
+* Composition instead of inheritance
+* Inherited base classes compose new behavior and responsibility by becoming additive or decorated
+* Allows an object bo be __Open for extension and Closed for modification__ while still adding responsibilities
+
+#### Why Use This Pattern?
+* Composition over Inheritance
+* Add behavior without code modifications, support non breaking changes
+* Can also remove behavior through encapsulation via decoration
+
+#### Creation Strategy
+* Base abstract class
+* AbstractDecorator extends Base 
+* Decorator extends AbstractDecorator that maintains instance of Base abstract class 
+
+#### Example of Decorator Pattern
+* [decorator](src/main/java/learn/oop/springdp/springdp/decorator)
+* [test](src/test/java/learn/oop/springdp/springdp/decorator/PepperoniTest.java)
 
 [Top](#spring-design-patterns)
