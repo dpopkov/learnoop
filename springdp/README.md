@@ -8,6 +8,8 @@ Spring Design Patterns
     * [2 - The Builder Pattern](#2---the-builder-pattern)
     * [3 - The Singleton Pattern](#3---the-singleton-pattern)
     * [4 - The Prototype Pattern](#4---the-prototype-pattern)
+* [Structural Patterns in Spring](#structural-patterns-in-spring)
+    * [5 - The Adapter Pattern](#5---the-adapter-pattern)
 
 The Patterns of the Spring Framework
 ------------------------------------
@@ -209,3 +211,33 @@ but act the same and have the same state
 
 [Top](#spring-design-patterns)
 
+
+Structural Patterns in Spring
+-----------------------------
+
+### 5 - The Adapter Pattern
+
+#### Use in Spring
+* Used often in Spring integration when dealing with Channer Adapters
+for communication with different systems
+* Used in internal operations of AspectJ and used during load
+
+#### Pattern in a Nutshell
+* Two different interfaces share a common operation
+* Adapter is a wrapper class that is created that holds an
+instance of one interface and implements the other
+* The shared operation of the wrapper interface is implemented to call
+the shared operation of the wrapped interface
+
+#### Why Use This Pattern?
+* Legacy or third party code needs to fit into your code
+* Shared functionality on disparate objects to reduce code
+* Coding to interface in routine workflows and leveraging adapters
+reduces code while improves readability
+
+#### Example of Adapter Pattern
+* [AppleAdapter](src/main/java/learn/oop/springdp/springdp/adapter/AppleAdapter.java)
+* [AppleAdapterTest](src/test/java/learn/oop/springdp/springdp/adapter/AppleAdapterTest.java)
+
+
+[Top](#spring-design-patterns)
