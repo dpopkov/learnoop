@@ -5,6 +5,7 @@ Spring Design Patterns
 * [Inversion of Control (IoC) Pattern](#inversion-of-control-ioc-pattern-1)
 * [Creational Patterns in Spring](#creational-patterns-in-spring)
     * [1 - Factory Pattern](#1---factory-pattern)
+    * [2 - The Builder Pattern](#2---the-builder-pattern)
 
 The Patterns of the Spring Framework
 ------------------------------------
@@ -105,3 +106,35 @@ types using a factory method
 #### Example of Factory Pattern
 * [PetFactory](src/main/java/learn/oop/springdp/springdp/factory/PetFactory.java) used
 in [PetController](src/main/java/learn/oop/springdp/springdp/controller/PetController.java)
+
+[Top](#spring-design-patterns)
+
+
+### 2 - The Builder Pattern
+
+#### Use in Spring
+* Used in various places in the framework
+* ResultActions is one often used (MockMvc)
+* Lombok @Builder annotation: not genuinely Spring, but widely accepted
+
+#### Pattern in a Nutshell
+* Each method returns the object reference it's called from
+* Build method returns a fully constructed object
+* Functionality can be combined into one class
+
+#### Why Use This Pattern?
+* Useful when object creation has many parameters
+* Becomes increasingly more useful when some or all parameters are optional
+* Can make code easier to read because of reduced lines for construction when compared with setters
+
+#### Creation Strategy
+* Define base class with all-args-constructor
+* Create Builder class with attributes and setters for each argument of base class
+* Each setter should return the Builder object
+* Create the build method that constructs and returns object of the base class
+
+#### Example of Builder Pattern
+* [Contact.Builder](src/main/java/learn/oop/springdp/springdp/builder/Contact.java) used
+in [ContactController](src/main/java/learn/oop/springdp/springdp/controller/ContactController.java)
+
+[Top](#spring-design-patterns)
